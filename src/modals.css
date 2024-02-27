@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* Modal */
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 40;
+  pointer-events: none;
+}
+.modal-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgba(9,10,13,.35);
+  pointer-events: auto;
+}
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  position: relative;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+  -ms-overflow-y: visible;
+  pointer-events: auto;
+  width: calc(100% - 2rem);
+  border-radius: 0.25rem;
+}
+.modal-head,
+.modal-foot {
+  align-items: center;
+  background-color: whitesmoke;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  position: relative;
+}
+.modal-body {
+  -webkit-overflow-scrolling: touch;
+  background-color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 0.5rem;
+}
+.modal.active {visibility: visible;}
+.modal-noscroll {overflow: hidden !important;}
+/* Modal Horizontal Alignment */
+.modal.left {flex-direction: row; justify-content: start;}
+.modal.right {flex-direction: row; justify-content: end;}
+/* Modal Vertically Alignment */
+.modal.top {flex-direction: row; align-items: start;}
+.modal.bottom {flex-direction: row; align-items: end;}
+/* Modal Sizes */
+.modal-s {max-width: 16rem;}
+.modal-m {max-width: 32rem;}
+.modal-l {max-width: 64rem;}
+.modal-full {max-height: 100%; min-height: 100%; max-width: 100%; min-width: 100%;}
+.modal-full.modal-content {border-radius: 0; margin: 0;}
+/* tablet */
+@media screen and (max-width: 1023px), print {
+  .modal-tablet-full {max-height: 100%; min-height: 100%; max-width: 100%; min-width: 100%;}
+  .modal-tablet-full.modal-content {border-radius: 0; margin: 0;}
+}
+/* mobile */
+@media screen and (max-width: 768px), print {
+  .modal-mobile-full {max-height: 100%; min-height: 100%; max-width: 100%; min-width: 100%;}
+  .modal-mobile-full.modal-content {border-radius: 0; margin: 0;}
+}
+/* Fade Animations */
+.modal-fade {opacity: 0; transition: opacity 0.3s ease-in, visibility 0ms ease-in 0.3s;}
+.modal-fade.active {opacity: 1; transition-delay: 0s;}
+/* Scale Animation */
+.modal-scale {opacity: 0; transition: opacity 0.3s ease-in, visibility 0ms ease-in 0.3s;}
+.modal-scale .modal-content {
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.5s ease-in 0s, opacity 0.3s ease-in;
+}
+.modal-scale.active {opacity: 1; transition-delay: 0s;}
+.modal-scale.active .modal-content {opacity: 1; transform: scale(1);}
+/* Swing Animation */
+.modal-swing {opacity: 0; transition: opacity 0.3s ease-in, visibility 0ms ease-in 0.3s;}
+.modal-swing .modal-content {opacity: 0; transition: opacity 0.3s ease-in;}
+.modal-swing.active {opacity: 1; transition-delay: 0s;}
+.modal-swing.active .modal-content {
+  opacity: 1;
+  animation: box-swing ease-in 0.2s 2 alternate;
+}
+@keyframes box-swing {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(3deg);}
+  100% {transform: rotate(-3deg);}
+}
